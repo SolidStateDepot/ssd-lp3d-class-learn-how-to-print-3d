@@ -1,0 +1,530 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Learn How to Print in 3D</title>
+<!-- metadata -->
+<meta name="generator" content="S5" />
+<meta name="version" content="1.0" />
+<meta name="subject" content="Advanced STL to GCode translation" />
+<meta name="author" content="Free Beachler" />
+<meta name="company" content="Solid State Depot" />
+<meta name="publisher" content="boulderhackerspace.com" />
+<meta name="description" content="A presentation that outlines the topics covered in the workshop at Solid State Depot titled 'Advanced Slicing'." />
+<meta name="keywords" content="SSD, boulder hackerspace, 3D printer, reprap, hackerspace, gcode, STL, slicing, slic3r, Open Source Software, OSS, Open Source Hardware, OSH, S5" />
+<meta name="robots" content="index, follow" />
+<meta name="revisit-after" content="7 days" />
+<!-- meta additionally -->
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- configuration transition extension -->
+<meta name="tranSitions" content="true" />
+<meta name="fadeDuration" content="500" />
+<meta name="incrDuration" content="250" />
+<!-- configuration autoplay extension -->
+<meta name="autoMatic" content="false" />
+<meta name="playLoop" content="true" />
+<meta name="playDelay" content="10" />
+<!-- configuration audio extension -->
+<meta name="audioSupport" content="true" />
+<meta name="audioVolume" content="100" />
+<meta name="audioError" content="true" />
+<!-- configuration audio debug -->
+<meta name="audioDebug" content="false" />
+<!-- style sheet links -->
+<link rel="stylesheet" href="ui/scala_utf/slides.css" type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="ui/scala_utf/outline.css" type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="ui/scala_utf/print.css" type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="ui/scala_utf/opera.css" type="text/css" media="projection" id="operaFix" />
+<!-- embedded styles -->
+<style type="text/css" media="all">
+.imgcon {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+	text-align: center;
+}
+#anim {
+	width: 33%;
+	height: 320px;
+	position: relative;
+}
+#anim img {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+.red {
+	color: red;
+}
+.grey {
+	color: gray;
+}
+</style>
+<!-- S5 JS -->
+<script src="ui/scala_utf/slides.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="layout">
+  <div id="controls"><!-- DO NOT EDIT --></div>
+  <div id="currentSlide"><!-- DO NOT EDIT --></div>
+  <div id="header"></div>
+  <div id="footer">
+    <h1>Learn How To Print in 3D</h1>
+  </div>
+</div>
+<div class="presentation">
+  <object data="mp3/chillout.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+  </object>
+  <div class="slide">
+    <h1>Learn How To Print<br />in 3D</h1>
+    <h3>Free Beachler</h3>
+    <h4><a href="http://boulderhackerspace.com" rel="external">boulderhackerspace.com</a></h4>
+    <p style="font-size: 18px;"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title" style="font-size: 20px;">This presentation</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Free Beachler </span>is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="pix/ccna_80_15.png" /></a><br />
+      Slideshow based on <span class="red">S5</span> 1.3&szlig;6 by Eric Meyers (meyerweb.com) and Christian Effenberger (s5.netzgesta.de).<br />
+    </p>
+    <div class="handout"></div>
+    <object data="mp3/thunder.mp3" archive="volume:50" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object>
+  </div>
+  <div class="slide">
+    <h1>Prerequisites</h1>
+    <ul>
+      <li>You are 14 years of age or older.  If you are younger than 14, then you must be supervised by an adult at all times during this workshop.</li>
+      <li>A computer with a web browser that supports HTML5. A laptop is optimal. We can accomodate a desktop PC but please notify the instructor of this requirement at least 24 hours in advance.</li>
+      <li>Non-members must submit a signed SSD waiver.  SSD Members should have already done this.</li>
+    </ul>
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/club.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>
+  <!-- body content -->
+  <div class="slide">
+    <h1>Before We Start</h1>
+    <ul>
+      <li>Welcome!</li>
+      <li>Did you sign the SSD waiver?</li>
+      <li>3D Printers can be hazardous!  They can be a fire risk, burn risk, and can injure you.  We will learn ways to handle them safely.</li>
+      <li>If you're not a member, then please help avoid accidents by avoiding any physical contact with our machines - look but don't touch.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>If we have not given you a tour of the space, please request one prior to or after the workshop.</li>
+        <li>Have you paid the workshop fee if you're not a member of SSD?</li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Caution!</h1>
+    <ul>
+      <li>Do NOT touch the 3D printer hotend.  It will instantly burn and scar.  It operates at 180-230 celsius (370F - 470F).</li>
+      <li>Do NOT touch the 3D printer electronics.  You should only touch the electronics if you know what you're doing, or as instructed in the workshop.</li>
+      <li>NEVER move printer parts while the printer is off! Only move them when it's on.</li>
+      <li>Do NOT touch the printer while it's printing!  It's better left undisturbed.</li>
+      <li>Avoid breathing fumes from the printer!  Melting ABS emits styrene gas and other byproducts.  Melted PLA also releases fumes.  A 3D printer should be used in a well ventilated area.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>It's OK to move printer parts by hand while the printer is on.</li>
+        <li>You can learn more about ABS and styrene gas on the internet, for example Wikipedia.</li>
+        <li>Styrene gas is probably or certainly unacceptable for most home uses.  Pregnant women and infants should avoid exposure to styrene gas.</li>
+        <li>It's not as clear if PLA byproducts are as risky as styrene gas.</li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Get the Software</h1>
+    <ul>
+      <li>STL &raquo; GCode - download from <a href="http://slic3r.org" rel="external">http://slic3r.org</a></li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>Slic3r is cross-platform Win, OS X, Linux.</li>
+      </ul>
+    </div>	<!-- /notes -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>3D Printer Basics</h1>
+    <ul>
+      <li>3D Printers are additive manufacturing machines.</li>
+      <li>3D Printers build objects layer by layer.  Objects are printed from bottom up (or top down).</li>
+      <li>3D Printers can make objects from a variety of materials:  plastic, metal, wood, concrete, hybrid materials, biological materials, foodstuffs, and more.</li>
+      <li>2 classes of 3D printers:  deposition and sintering.</li>
+      <li>SSD 3D Printers are filament deposition manufacturing (FDM) machines.</li>
+      <li>SSD 3D Printers use PLA and ABS plastic.</li></ul>
+    <div class="notes">
+      <ul>
+        <li>Additive manufacturing can create internal structures inside manufactured objects.  For example, printed objects can be completely or partially hollow.  Indeed, a 3D printer can print a ship inside a bottle.</li>
+        <li>CNC is an example of subtractive manufacturing machine.  In subtractive manufacturing, material is discarded (wasted).  This process cannot be used to create hollow objects.  For example, it cannot be used to manufacture a ship inside a bottle.</li>
+        <li>Deposition and sintering are similar - one process deposits small bits of material side-by-side; the other fuses small bits of material together. The size of the small bits  determines the &quot;resolution&quot; of the printed part.</li>
+      </ul>
+    </div>	
+    <!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>3D Printer Software</h1>
+    <ul>
+      <li>We use a software toolchain to make things with a 3D printer.</li>
+      <li>CAD software:  used to design 3D objects.</li>
+      <li>GCode translator software:  convert our CAD model into GCode the 3D printer understands.</li>
+      <li>Control software:  control the printer, print GCode files, monitor printer status.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>What would our world be without CAD software?  CAD is probably the most significant software ever made for computers and has literally transformed manufacturing and the human condition.</li>
+        <li>3D printers (usually) understand the GCode protocol, or a variant of GCode.  That's why we convert our CAD files to GCode.</li>
+        <li>CAD:  OpenSCAD, FreeCAD, FormIt, Sketchup, OpenJSCAD, TinkerCAD, AutoDesk, AutoCAD, SolidWorks, and more.</li>
+        <li>GCode Translators:  Slic3r, Skeinforge, KISSlicer</li>
+        <li>Control:  PRINT3R, Octoprint, Pronterface</li>
+        <li>Makerbot has their own software suite, some of it related to and/or based on above products.</li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>RepRap 3D Printer</h1>
+    <ul>
+      <li>Reprap = self-REPlicating RAPid prototyping machine.</li>
+      <li><a href="http://www.reprap.org" rel="external">http://www.reprap.org</a></li>
+      <li>SSD currently has 3 reprap models:  MendelMax, PrismX, and Prusa i2.</li>
+      <li>Each machine, for ex. all MendelMax models, are not exactly the same.  They have been repaired and rebuilt over the years.</li>
+      <li>Repraps are open source.  They can be purchased or built DIY.  They can be repaired, modified, and upgraded.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>4x Lulzbot AO-100 (MendelMax 1.5)</li>
+        <li>1x Terawatt Industries MendelMax 1.6</li>
+        <li>1x PrismX 3D Printer Ltd. Edition</li>
+        <li>1x Prusa i2</li>
+        <li>Repraps can usually be purchased as a kit or pre-assembled machine.  By definition an open-source reprap has publicly available design plans, so you can also DIY from scratch or repair.</li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Let's Start!</h1>
+    <ul>
+      <li>Choose a 3D printer for the workshop.  Each machine has a label(s) to identify it.</li>
+      <li>Open web browser to http://192.168.1.13:500X (where X is 0, 1, 2, 3, ...)</li>
+      <li>Turn printer ON.</li>
+      <li>Perform pre-flight check.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>Which port and which X?  X corresponds to the label on your 3D printer.  For example, use port 5000 for ACM0, port 5001 for ACM1, and so on.</li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Pre-Flight Check</h1>
+    <ul>
+      <li>The printer is ON.</li>
+      <li>Identify the control electronics (RAMPS) and motors.</li>
+      <li>Identify axes:  X, Y, Z, E.</li>
+      <li>Visually inspect the endstop switches.</li>
+      <li>Verify if filament needs to be loaded.</li>
+      <li>You can move X and Y axes by hand when the printer is on to verify endstop action.</li>
+      <li>Identify the USB cable connected to the printer.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li></li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Prepare Heatbed Glass</h1>
+    <ul>
+      <li>Remove glass from heatbed.</li>
+      <li>Clean glass with soap and water and/or alcohol.  Acetone can be used for tough residue, and can be rinsed with isopropyl followed by water.</li>
+      <li>Apply tack to glass.  A generous application of hairspray to clean glass is recommended.</li>
+      <li>Re-install glass on heatbed with clips.  Ensure the glass is placed flatly on the PCB.  Ensure glass clips do not tangle in wires or collide with anything.</li>
+      <li>Re-verify that the z-axis endstop switch is intact.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li></li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Connect with Octoprint</h1>
+    <ul>
+      <li>Web browser opened to http://192.168.1.13:500x.</li>
+      <li>Login using SSD Octoprint credentials.  They are the same for every port/instance.</li>
+      <li>Choose the USB port ACMx according to the printer label.  ACM0 should choose port 5000, ACM1 chooses port 5001, etc.</li>
+      <li>Baud rate = 115200 (115.2k)</li>
+      <li>Choose the "Console" tab in upper right.</li>
+      <li>Click the Connect button near upper left.  Printer state = "Connecting".</li>
+      <li>Observe the printer response in the console.  It should be human readable and indicate the printer is ready. Octoprint's printer state will change to "Connected".</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>If Octoprint behaves erratically, try refreshing the page.  Example below.</li>
+        <li>If the printer does not connect then Octoprint may become confused.  If you click connect and the connect button is still disabled after ~10 seconds, then refresh the web page.</li>
+        <li>If the printer does not connect then try these things:
+          <ul>
+            <li>Ask the instructor how to reset your RAMPS.</li>
+            <li>Check the USB cable.  Try re-seating it especially on the printer side even if it looks OK.  The Arduino LEDs should flash on the printer when the USB cable is re-connected.</li>
+            <li>Try connecting with Octoprint again.</li>
+            <li>Change the baud rate to 230400 in Octoprint, then click Connect.  Wait for this to fail (as it should), if Octoprint behaves erratically then refresh.  Change the baud rate back to 115200, then click Connect.  Wait for this to succeed.  If it still doesn't connect, repeat the process; in the worst case let somebody know and use another printer.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Caution Before Jogging</h1>
+    <ul>
+      <li>Moving a print axis is also called "jogging" it.</li>
+      <li>A "crash" occurs when an axis goes beyond a minimum or maximum.</li>
+      <li>If X or Y axes crash the stepper motor(s) makes a nasty noise.  It's not good for the motor but the machine will survive.</li>
+      <li>If Z axis crashes then something might break.  The hotend makes contact with and pushes down on the (semi-rigid) heatbed.  The hotend can suffer damage and the heatbed glass can shatter.  The heatbed has springs in order to absorb some of this, but how much varies on each machine (sometimes they are already compressed).  If the z-axis keeps pushing then the glass will shatter and the metal parts and frame will bend.</li>
+      <li>If the z-axis crashes then we can (usually) adjust the endstop position.  We must also re-check the bed-levelling.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>ALWAYS click "Motors Off" in the Control tab in Octoprint if you want to move any X/Y/Z axis by hand.</li>
+        <li>SSD printers have "min endstops", so if a crash happens on the minimum side then something is wrong with the endstop switch.  Crashes on the minimum side are more frequent because SSD printers "home" at "zero", which means they start prints from the minimum of each axis.</li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Warm Up Printer</h1>
+    <ul>
+      <li>Choose the Control tab in Octoprint.</li>
+      <li>Click the X/Y Home icon.</li>
+      <li>Did you check the Z-endstop switch?</li>
+      <li>Click the Z Home icon.</li>
+      <li>Choose the Temperature tab.</li>
+      <li>Set the Bed Temperature to PLA (60C).</li>
+      <li>Set the Temperature (hotend) to 0 (off).</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>ALWAYS click "Motors Off" in the Control tab in Octoprint if you want to move any X/Y/Z axis by hand.</li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Load PLA Filament</h1>
+    <ul>
+      <li>TODO:  describe this process.  I have two processes that students seem to understand well -- a quick method and a more involved method.</li>
+      <li>If we don't have enough PLA then you may have to use ABS.  If you use ABS then replace PLA temperature settings in this writeup.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>If you switch material types or colors then you must flush the extruder.  Going from ABS (higher temp) to PLA (lower temp) requires much more flushing.  In other words, flush out all the ABS with the new PLA filament -- at ABS temperatures!  Otherwise ABS residue can solidify at PLA temps. and solidify.</li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Get the SSD Emblem</h1>
+    <ul>
+      <li>Open a new browser tab/window to <a href="https://github.com/SolidStateDepot/3DPrinterWorkshop" rel="external">https://github.com/SolidStateDepot/3DPrinterWorkshop</a>.</li>
+      <li>Click Download ZIP (lower right of page).</li>
+      <li>Move the downloaded ZIP to a work folder and unzip it.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>The SSD Emblem was designed in OpenSCAD.</li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Get Slic3r Config INI</h1>
+    <ul>
+      <li>Browse to <a href="https://github.com/SolidStateDepot/printer-3d" rel="external">https://github.com/SolidStateDepot/printer-3d</a>.</li>
+      <li>Click Download ZIP (lower right of page).</li>
+      <li>Move the downloaded ZIP to a work folder and unzip it.</li>
+      <li>In Silc3r click File &raquo; Load Config...</li>
+      <li>Browse to the "printer-3d" folder you unzipped.  Locate the sub-folder that corresponds to the model of machine you're using:  tw-mm-16, lulz-ao-100, lulz-ao-100-d2, prusa-i2.</li>
+      <li>Open the "config.ini" file in the "slic3r" subfolder of your machine model.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li></li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Generate SSD Emblem GCode</h1>
+    <ul>
+      <li>Click/drag the SSDEmblem.stl file into the Slic3r "plater" (the main screen).</li>
+      <li>Alternatively, click "Add" on the main screen of Slic3r.  Then browse to the SSDEmbled.stl file.</li>
+      <li>Click Export GCode.  Save the GCode file in your work folder.</li>
+      <li>Use a verbose file name.  A recommended format is [name_of_object]-[printer_model]-[material_type].gcode.  For example, ssd-emblem-twmm16-pla.gcode.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>Familiarize yourself with basic view and edit actions in the Slic3r plater.</li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Load SSD Emblem GCode</h1>
+    <ul>
+      <li>In OctoPrint, scroll to the bottom-left area.</li>
+      <li>Click "Upload GCode".</li>
+      <li>Browse to your work folder.  Choose the SDDEmblem GCode file you saved earlier and click OK.</li>
+      <li>Octoprint will show the upload progress.  Once finished, the uploaded GCode file will appear in the Octoprint file list.</li>
+      <li>Find the uploaded file in the Octoprint file list.  Cilck the folder icon next to the filename to load it.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>We can view the estimated file time and filament length once Octoprint has analyzed the GCode.  This happens after the file is uploaded.</li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Verify GCode in Viewer</h1>
+    <ul>
+      <li>Click the GCode Viewer tab in Octoprint.</li>
+      <li>Familiarize yourself with the horizontal and vertical scrollbars in the view area.</li>
+      <li>Verify that the first layer is what you expect.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>The GCode Viewer has several options listed beneath the viewer.</li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Ship It!</h1>
+    <ul>
+      <li>Click Print in Octoprint.  The startup process is contained the first several lines of GCode and is described below.</li>
+      <li>The printer starts by heating the heatbed.  If it's already warm, this step completes quickly.</li>
+      <li>Next, the printer moves X/Y/Z axes to zero/home.  For practical purposes, this is the start of the print (see note).</li>
+      <li>Next, the printer heats the hotend.  When filament ooze appears the printer should be near target temperature.</li>
+      <li>Lastly, the printer starts the first layer of the object.  It executes GCode line-by-line, many lines per second so that its motions appear smooth.</li>
+      <li>If something goes wrong then perform a hard reset:  turn the machine off (power button) - then reset in Octoprint by clicking Cancel, then Disconnect, then Connect.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>If your pre-flight check missed something, or something happened afterwards, then this is an unfortunate time to learn, and timing gets worse afterwards.</li>
+        <li>The recommended reset process above is called a "hard reset".  There is also a "soft reset" process that can be used if the printer has already started the first layer:  click "Cancel" in Octoprint, then jog the Z-axis upwards 10mm.</li>
+        <li>In any case, a soft reset must wait for the printer to clear its motion buffer, which usually ranges from 4-16 commands (moves).</li>
+        <li>Another reset process uses the RAMPS reset button but this requires reaching into or near the frame while it operates.</li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Toolchain Details</h1>
+    <ul>
+      <li>We use a <a href="https://www.raspberrypi.org" rel="external">RaspberryPi</a> for our 3D printer server.  The RPi runs Raspbian Wheezy, a linux variant.  The RPi is configured with one Octoprint instance for each 3D printer at SSD.</li>
+      <li><a href="http://www.boulderhackerspace.com" rel="external">http://www.boulderhackerspace.com</a></li>
+      <li><a href="http://octoprint.org" rel="external">http://octoprint.org</a></li>
+      <li><a href="http://slic3r.org" rel="external">http://slic3r.org</a></li>
+      <li><a href="http://openscad.org" rel="external">http://openscad.org</a></li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>more CAD software:</li>
+        <li>more slicing software:</li>
+        <li>more control software:</li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <div class="slide">
+    <h1>Get Yer Parts</h1>
+    <ul>
+      <li>Wait for the heatbed to cool to room or handling temperature.</li>
+      <li>The printed plastic part cures as it cools - a fascinating process.</li>
+      <li>After enough cooling parts will usually peel themselves from the glass (by contraction) or can be removed by hand.</li>
+      <li>If the part is stuck, or you cannot wait, see notes.</li>
+      <li>Disconnect from the printer and turn it off.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>(optional) Carefully remove the heatbed glass to expedite the cooling process.  Be careful with glass!</li>
+        <li>(optional) Place the glass on a flat surface to expedite cooling further.</li>
+        <li>(optional) If the part is not removable by hand then carefully remove the glass; next carefully use a sharp-edge knife or blade to lift corners of the part away from the glass; create enough space to leverage the part from the glass; and finally lift the part from the glass.</li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+  <!-- copy the div-slide block to make more slides -->
+  <div class="slide">
+    <h1>Salutations</h1>
+    <ul>
+      <li>Thank you for attending!</li>
+      <li>Become a member of Solid State Depot:  24/7 access, printers, machines, tools, knowledge, workshops, and more.</li>
+      <li>3D printers provided by Free Beachler of Terawatt Industries, Lulzbot, and SSD!</li>
+      <li>Maintenance, parts, filament provided by Free Beachler of Terawatt Industries.</li>
+      <li>Special thanks to B. Hadley, J. Eskin, and those I may have forgotten to mention who contributed to this workshop.</li>
+    </ul>
+    <div class="notes">
+      <ul>
+        <li>Check out <a href="http://www.meetup.com/SolidStateDepot/" rel="external">meetup.com/SolidStateDepot/</a> for more SSD workshops.</li>
+      </ul>
+    </div>	<!-- /notes -->
+    <!-- uncomment for sound -->
+    <!-- object data="mp3/smart.mp3" archive="volume:50,loop" type="audio/mp3" class="handout" declare="declare" width="0" height="0">
+    </object -->
+  </div>	<!-- /slide -->
+
+</div>
+</body>
+</html>
