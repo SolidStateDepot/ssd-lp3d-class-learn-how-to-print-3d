@@ -10,9 +10,12 @@ The goal of the workshop is to train users how to print something on a SSD 3D pr
 
 The author has been providing this workshop for over 2 years.  Anything can go wrong with a 3D printer at anytime.  If you are just getting started providing instruction then you should consider starting with very small groups of 2 or 3 and practice for larger groups.
 
+OOPS!  There are _important_ Notes but they only appear in the text-only version.  That is a bug w/S5.
+
+## How To Use This Presentation
 This is an S5 presentation.  There is a printer-friendly version.
 
-OOPS!  There are _important_ Notes but they only appear in the text-only version.  That is a bug w/S5.
+Download the ZIP from github (lower-right of the repository main page).  Unpack the ZIP.  Load index.html in a modern web browser.  Click the page to advance or hover over the bottom to reveal a toolbar.  Click +/- in the toolbar to view the printer-friendly version.
 
 ## License
 The license is contained in the presentation.
